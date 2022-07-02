@@ -9,7 +9,7 @@ import {
   NumberField
 } from 'react-admin'
 
-const PostOrder = (props) => {
+const PostList = (props) => {
   return (
     <List {...props}>
       <Datagrid>
@@ -27,5 +27,5 @@ const PostOrder = (props) => {
     </List>
   )
 }
-
-export default PostOrder;
+export { PostList };
+export default PostList;
