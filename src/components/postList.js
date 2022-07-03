@@ -10,7 +10,6 @@ import {
 } from 'react-admin'
 
 const PostList = (props) => {
-  return (
     <List {...props}>
       <Datagrid>
         <TextField source='Order ID' />
@@ -25,7 +24,7 @@ const PostList = (props) => {
        <DeleteButton source='delete' />
       </Datagrid>
     </List>
-  )
+
 }
 export { PostList };
 export default PostList;
