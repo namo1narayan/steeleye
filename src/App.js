@@ -35,7 +35,7 @@ const WrappedListComponent = ({
 
   useEffect(() => {
     setSelectedIndex(null);
-  }, [items]);
+  }, [items, setSelectedIndex]);
 
   const handleClick = index => {
     setSelectedIndex(index);
@@ -56,7 +56,7 @@ const WrappedListComponent = ({
 };
 
 WrappedListComponent.propTypes = {
-  items: PropTypes.array(PropTypes.shapeOf({
+  items: PropTypes.array(PropTypes.shape({
     text: PropTypes.string.isRequired,
   })),
 };
