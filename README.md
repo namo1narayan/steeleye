@@ -1,3 +1,16 @@
+1.**Explain what the simple List component does.**
+
+Lists are used to display data in an ordered format and mainly used to display menus on websites. In React, Lists can be created in a similar way as we create lists in JavaScript.The map() function is used for traversing the lists.
+
+2. **What problems / warnings are there with code?**
+
+React Hook useEffect has a missing dependency: 'setSelectedIndex'. Either include it or remove the dependency array
+App.js:59 Uncaught TypeError: prop_types__WEBPACK_IMPORTED_MODULE_2___default(...).shapeOf is not a function
+   
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
