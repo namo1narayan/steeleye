@@ -1,28 +1,70 @@
-// import React, {useState} from 'react';
-import React from 'react';
-import './App.css';
-import { Admin, Resource } from 'react-admin'
-// import restProvider from 'ra-data-simple-rest'
-import CreateOrder from './components/CreateOrder';
-import EditOrder from './components/EditOrder';
-// import PostOrder from './components/PostOrder';
-import { PostList } from "./components/postList";
+import React, { useState, useEffect, memo } from 'react';
+import PropTypes from 'prop-types';
 
-import jsonServerProvider from "ra-data-json-server";
+// Single List Item
+const WrappedSingleListItem = ({
+  index,
+  isSelected,
+  onClickHandler,
+  text,
+}) => {
+  return (
+    <li
+      style={{ backgroundColor: isSelected ? 'green' : 'red'}}
+      onClick={onClickHandler(index)}
+    >
+      {text}
+    </li>
+  );
+};
 
-const dataProvider = jsonServerProvider("https://github.com/namo1narayan/json/blob/main/db.json");
+WrappedSingleListItem.propTypes = {
+  index: PropTypes.number,
+  isSelected: PropTypes.bool,
+  onClickHandler: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
+};
 
-const App = () => (
-  <Admin dataProvider={dataProvider}>
-    <Resource 
-       name="posts"
-    // path="https://github.com/namo1narayan/json/blob/main/db.json"
-        list={PostList}
-        create={CreateOrder}
-        edit={EditOrder}
-      />
-  </Admin>
-);
-    
+const SingleListItem = memo(WrappedSingleListItem);
 
-export default App;
+// List Component
+const WrappedListComponent = ({
+  items,
+}) => {
+  const [setSelectedIndex, selectedIndex] = useState();
+
+  useEffect(() => {
+    setSelectedIndex(null);
+  }, [items]);
+
+  const handleClick = index => {
+    setSelectedIndex(index);
+  };
+
+  return (
+    <ul style={{ textAlign: 'left' }}>
+      {items.map((item, index) => (
+        <SingleListItem
+          onClickHandler={() => handleClick(index)}
+          text={item.text}
+          index={index}
+          isSelected={selectedIndex}
+        />
+      ))}
+    </ul>
+  )
+};
+
+WrappedListComponent.propTypes = {
+  items: PropTypes.array(PropTypes.shapeOf({
+    text: PropTypes.string.isRequired,
+  })),
+};
+
+WrappedListComponent.defaultProps = {
+  items: null,
+};
+
+const List = memo(WrappedListComponent);
+
+export default List;
