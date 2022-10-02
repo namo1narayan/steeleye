@@ -55,7 +55,7 @@ const WrappedListComponent = ({
   )
 };
 
-WrappedListComponent.propTypes = {
+WrappedListComponent.checkPropTypes = {
   items: PropTypes.array(PropTypes.shape({
     text: PropTypes.string.isRequired,
   })),
